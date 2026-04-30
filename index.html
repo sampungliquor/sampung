@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta name="google-site-verification" content="MFH2jA4BajMkmTD1K_EhzNXbyhE1OblZ2_AevxGUNLg" />
+    <meta name="naver-site-verification" content="e473def3a8b38caecebfcfe4c30c7c4b5910c4ee" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>(유)삼풍주류 - 믿음과 신뢰의 주류 파트너</title>
+    <style>
+        /* 기본 스타일 */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Pretendard', sans-serif; }
+        html { scroll-behavior: smooth; } /* 부드러운 스크롤 효과 */
+        body { line-height: 1.6; color: #333; background-color: #f9f9f9; }
+        a { text-decoration: none; color: inherit; }
+
+        /* [NEW] 네비게이션 포함 헤더 */
+        header {
+            background: #fff;
+            padding: 0 5%;
+            height: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .logo { font-size: 1.6rem; font-weight: bold; color: #0056b3; }
+        
+        .nav-menu { display: flex; list-style: none; gap: 30px; }
+        .nav-menu li a {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #555;
+            transition: color 0.3s;
+        }
+        .nav-menu li a:hover { color: #0056b3; font-weight: bold; }
+
+        .contact-info-top { font-weight: 700; color: #e63946; font-size: 1.1rem; }
+
+        /* 히어로 섹션 */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('sampung.jpg');
+            background-size: cover; background-position: center; height: 450px;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; color: #fff; padding: 20px;
+        }
+        .hero h1 { font-size: 2.5rem; margin-bottom: 15px; }
+
+        /* 회사 소개 섹션 (박스 반전형) */
+        .about-section { padding: 100px 5%; background: #fdfdfd; }
+        .about-box {
+            max-width: 1000px; margin: 0 auto; background: #fff; padding: 60px 40px;
+            border-radius: 30px; border: 1px solid #eee; text-align: center;
+            transition: all 0.5s ease; cursor: default; box-shadow: 0 15px 40px rgba(0,86,179,0.06);
+        }
+        .about-box:hover { background-color: #0056b3; transform: translateY(-10px); }
+        .about-box h2 { font-size: 2.2rem; color: #0056b3; margin-bottom: 25px; transition: color 0.5s; }
+        .about-box:hover h2 { color: #fff; }
+        .about-content { font-size: 1.2rem; color: #444; margin-bottom: 50px; line-height: 1.9; transition: color 0.5s; }
+        .about-box:hover .about-content { color: rgba(255,255,255,0.9); }
+        .about-box .highlight { color: #e63946; font-weight: bold; transition: color 0.5s; }
+        .about-box:hover .highlight { color: #ffbe0b; }
+        
+        .trust-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .trust-item { background: #f8f9fa; padding: 30px 20px; border-radius: 15px; transition: all 0.5s; }
+        .about-box:hover .trust-item { background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.2); }
+        .trust-item h4 { color: #0056b3; margin-bottom: 12px; font-size: 1.2rem; transition: color 0.5s; }
+        .about-box:hover .trust-item h4 { color: #ffbe0b; }
+        .trust-item p { font-size: 0.95rem; color: #666; transition: color 0.5s; }
+        .about-box:hover .trust-item p { color: rgba(255, 255, 255, 0.8); }
+
+        /* 제품 카탈로그 섹션 */
+        .products { padding: 100px 5%; max-width: 1200px; margin: 0 auto; text-align: center; }
+        .products h2 { font-size: 2.2rem; color: #333; margin-bottom: 50px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .card { background: #fff; padding: 40px; border-radius: 15px; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.04); border: 1px solid #eee; }
+        .card h3 { color: #0056b3; margin-bottom: 15px; }
+
+        /* 상담문의 섹션 */
+        .inquiry-cta { background: #fff; padding: 100px 5%; text-align: center; border-top: 1px solid #eee; }
+        .inquiry-cta h2 { font-size: 2.2rem; margin-bottom: 20px; }
+        .btn-main-inquiry {
+            display: inline-block; background: #ffbe0b; color: #333; padding: 22px 60px;
+            border-radius: 50px; font-size: 1.4rem; font-weight: bold; transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(255, 190, 11, 0.3);
+        }
+        .btn-main-inquiry:hover { transform: translateY(-3px); background: #ffca3a; }
+
+        /* 푸터 */
+        footer { background: #333; color: #fff; padding: 60px 5%; font-size: 0.95rem; }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 30px; }
+        
+        /* 반응형 */
+        @media (max-width: 768px) {
+            header { height: auto; padding: 20px; flex-direction: column; gap: 15px; }
+            .nav-menu { gap: 15px; }
+            .nav-menu li a { font-size: 0.9rem; }
+            .hero h1 { font-size: 1.8rem; }
+            .trust-grid { grid-template-columns: 1fr; }
+        .grid { 
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important; /* 1줄에서 2줄로 변경 */
+        gap: 12px !important;
+        padding: 0 15px 50px !important;
+    }
+    .card { 
+        padding: 20px 10px !important; 
+    }
+    .card h3 { 
+        font-size: 1rem !important; 
+    }
+    .card p { 
+        font-size: 0.85rem !important; 
+    }
+    .import-section-title {
+        font-size: 1.3rem !important;
+        padding: 20px 0 10px 5px !important;
+    }
+}
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">(유)삼풍주류</div>
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="#">메인화면</a></li>
+                <li><a href="#about">회사소개</a></li>
+                <li><a href="#products">제품소개</a></li>
+                <li><a href="#contact">상담문의</a></li>
+                <li><a href="javascript:void(0);" onclick="openNotice()">공지사항</a></li>
+            </ul>
+        </nav>
+        <div class="contact-info-top">
+    <a href="tel:031-709-8334" class="call-link">📞 전화 031-709-8334</a>
+</div>
+    </header>
+
+    <section class="hero">
+        <h1>서울·경기·인천 신속 주류 유통</h1>
+        <p>신뢰할 수 있는 파트너, 최상의 서비스로 보답하겠습니다.</p>
+    </section>
+
+    <section id="about" class="about-section">
+        <div class="about-box">
+            <h2>Our Commitment</h2>
+            <div class="about-content">
+                (유)삼풍주류는 <span class="highlight">‘믿음’</span>과 <span class="highlight">‘신뢰’</span>를 기업의 최우선 가치로 여깁니다.<br>
+                단순한 주류 공급을 넘어, 외식업 경영주님들의 든든한 사업 파트너로서<br>
+                정직한 가격과 신속하고 정확한 배송 서비스를 약속드립니다.
+            </div>
+            
+            <div class="trust-grid">
+                <div class="trust-item">
+                    <h4>정직한 유통</h4>
+                    <p>투명한 단가와 정직한 공급으로 매장 운영의 부담을 덜어드립니다.</p>
+                </div>
+                <div class="trust-item">
+                    <h4>신속한 배송</h4>
+                    <p>서울·경기·인천 전 지역, 약속된 시간에 정확히 도착합니다.</p>
+                </div>
+                <div class="trust-item">
+                    <h4>다양한 라인업</h4>
+                    <p>맥주, 소주부터 프리미엄 주류까지 트렌디한 품목을 완비했습니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="products" class="products">
+        <div class="section-title">
+            <h2 style="font-size: 2.2rem; color: #333; margin-bottom: 30px;">주요 취급 품목</h2>
+            <p>원하시는 주류 카테고리를 선택하시면 상세 라인업을 확인하실 수 있습니다.</p>
+        </div>
+
+        <div class="category-wrapper">
+            <div class="cat-card" onclick="openCatalog('domestic-beer')">
+                <span class="emoji">🍺</span>
+                <h3>맥주</h3>
+                <p>Cass, Terra, Kelly 등</p>
+            </div>
+            <div class="cat-card" onclick="openCatalog('soju')">
+                <span class="emoji">🍶</span>
+                <h3>소주</h3>
+                <p>참이슬, 처음처럼, 새로 등</p>
+            </div>
+            <div class="cat-card" onclick="openCatalog('whisky')">
+                <span class="emoji">🥃</span>
+                <h3>위스키</h3>
+                <p>골든블루, 윈저, 조니워커 등</p>
+            </div>
+            <div class="cat-card" onclick="openCatalog('sake')">
+                <span class="emoji">🏮🍶🍷</span>
+                <h3>사케,와인</h3>
+                <p>간바레, 준마이, 라크라사드 등</p>
+            </div>
+        </div>
+    </section>
+
+    <div id="catalog-overlay" class="overlay">
+    <button class="fixed-back-btn" onclick="closeCatalog()">이전 화면 ✕</button>
+    
+    <a href="https://naver.me/xYNQvMQG" target="_blank" class="fixed-inquiry-btn">상담문의 💬</a>
+
+    <div class="overlay-body">
+        <div class="overlay-title-area">
+            <h2 id="catalog-title">제품 라인업</h2>
+            <hr style="border: 0; height: 2px; background: #0056b3; margin-top: 15px; width: 250px;">
+        </div>
+        
+        <div id="catalog-content" class="grid">
+            </div>
+    </div>
+</div>
+<div id="notice-overlay" class="overlay">
+    <button class="fixed-back-btn" onclick="closeNotice()">닫기 ✕</button>
+    <div class="overlay-body">
+        <div class="overlay-title-area">
+            <h2>공지사항</h2>
+            <hr style="border: 0; height: 2px; background: #0056b3; margin-top: 15px; width: 130px;">
+        </div>
+        
+        <div id="notice-content" style="padding: 0 5%; max-width: 900px;">
+            </div>
+    </div>
+</div>
+    <style>
+        /* 오버레이 배경 설정 */
+        .overlay {
+            display: block; 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%;
+            background: #fff; 
+            z-index: 2000; 
+            overflow-y: auto;
+            padding-top: 60px; /* 상단 여백 */
+        }
+
+        /* [핵심] 버튼만 우측 상단에 고정 */
+        .fixed-back-btn {
+            position: fixed; /* 화면에 박제 */
+            top: 30px;
+            right: 30px;
+            z-index: 3000; /* 제품 카드보다 무조건 위 */
+            background: #e63946;
+            color: #fff;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(230, 57, 70, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .fixed-back-btn:hover {
+            background: #c1121f;
+            transform: scale(1.05);
+        }
+
+        /* 제목 영역 스타일 */
+        .overlay-title-area {
+            max-width: 1200px;
+            margin: 0 auto 50px;
+            padding: 0 5%;
+            text-align: left;
+        }
+
+        .overlay-title-area h2 {
+            font-size: 2.2rem;
+            color: #333;
+            margin: 0;
+        }
+
+        /* 제품 리스트 몸통 */
+        .overlay-body { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding-bottom: 80px;
+        }
+
+        /* 기존 그리드 스타일 */
+        .grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 25px; 
+            padding: 0 5%;
+        }
+
+        /* 모바일 대응: 버튼이 너무 크면 조절 */
+        @media (max-width: 768px) {
+            .fixed-back-btn {
+                top: 20px;
+                right: 20px;
+                padding: 10px 18px;
+                font-size: 0.9rem;
+            }
+       .category-container { 
+                /* 제품 목록을 감싸는 박스 설정 */
+                display: grid !important; 
+                grid-template-columns: 1fr 1fr !important; /* 화면을 반으로 나눠 2개씩 배치 */
+                gap: 15px !important; /* 제품 사이의 여백 */
+                padding: 10px !important;
+            }
+
+            .category-item {
+                /* 각 제품 카드 설정 */
+                width: 100% !important; 
+                margin: 0 !important; /* 기존 세로 배열용 여백 제거 */
+                padding: 10px !important;
+            }
+
+            .category-item img {
+                /* 사진이 너무 커지지 않게 높이 조절 */
+                height: 120px !important;
+                object-fit: contain !important;
+            }
+
+            .category-item h3 {
+                /* 제품명 글자 크기 살짝 줄임 (한 눈에 들어오게) */
+                font-size: 0.95rem !important;
+                margin: 8px 0 !important;
+            }
+        }
+        /* 제목이 한 줄을 다 쓰게 만드는 마법의 코드 */
+.import-section-title {
+    grid-column: 1 / -1; /* 왼쪽 끝에서 오른쪽 끝까지 */
+    width: 100%;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    padding: 40px 0 15px 10px;
+    border-bottom: 2px solid #0056b3;
+    text-align: left;
+    margin-bottom: 10px;
+}
+/* 상담문의 고정 버튼 스타일 */
+.fixed-inquiry-btn {
+    position: fixed;
+    top: 85px; /* '이전 화면' 버튼 아래에 배치 */
+    right: 30px;
+    z-index: 3000;
+    background: #ffbe0b; /* 눈에 띄는 노란색 */
+    color: #333;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fixed-inquiry-btn:hover {
+    transform: scale(1.05);
+    background: #ffca3a;
+}
+
+/* 모바일 대응 */
+@media (max-width: 768px) {
+    .fixed-inquiry-btn {
+        top: 70px; /* 모바일은 간격을 조금 더 좁게 */
+        right: 20px;
+        padding: 8px 18px;
+        font-size: 0.85rem;
+    }
+}
+    </style>
+
+    <style>
+        /* 카테고리 선택 카드 스타일 */
+        .category-wrapper { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; max-width: 1100px; margin: 0 auto; }
+        .cat-card { 
+            background: #fff; padding: 40px 20px; border-radius: 20px; text-align: center; 
+            border: 1px solid #eee; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .cat-card:hover { transform: translateY(-10px); border-color: #0056b3; box-shadow: 0 10px 25px rgba(0,86,179,0.1); }
+        .cat-card .emoji { font-size: 3rem; display: block; margin-bottom: 15px; }
+        .cat-card h3 { color: #0056b3; margin-bottom: 10px; }
+
+        /* 전체화면 오버레이 스타일 */
+        .overlay {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #fff; z-index: 2000; overflow-y: auto; padding: 50px 5%;
+        }
+        .overlay-header { 
+            max-width: 1200px; margin: 0 auto 40px; display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 2px solid #0056b3; padding-bottom: 20px;
+        }
+        .overlay-header h2 { font-size: 2rem; color: #0056b3; }
+        .close-btn { 
+            background: #e63946; color: #fff; border: none; padding: 10px 25px; 
+            border-radius: 30px; font-size: 1.1rem; cursor: pointer; font-weight: bold;
+        }
+        .overlay-body { max-width: 1200px; margin: 0 auto; }
+
+        /* 도수 태그 (재사용) */
+        .alc-tag { display: inline-block; color: #fff; padding: 2px 10px; border-radius: 10px; font-size: 0.8rem; margin-bottom: 10px; }
+    </style>
+
+    <script>
+        // 제품 데이터 정의 (사장님이 직접 수정/추가하기 편하게 따로 뺐습니다)
+        // 제품 데이터 정의
+        const productData = {
+            'domestic-beer': {
+                title: '국산 맥주 라인업',
+                items: [
+                    { name: '카스 (Cass)', alc: '4.5%', desc: '신선하고 깔끔한 맛의 대한민국 대표 맥주', color: '#e63946' },
+                    { name: '테라 (Terra)', alc: '4.6%', desc: '청정 맥아 100%와 리얼 탄산의 강력한 청량감', color: '#2d6a4f' },
+                    { name: '켈리 (Kelly)', alc: '4.5%', desc: '부드러움과 강렬한 탄산감을 동시에 잡은 맥주', color: '#d4a373' },
+                    { name: '한맥 (Hanmac)', alc: '4.5%', desc: '한국인의 입맛에 맞춘 부드러운 목 넘김', color: '#004b23' },
+                    { name: '클라우드 (Kloud)', alc: '5.0%', desc: '물을 타지 않은 깊고 진한 프리미엄 라거', color: '#bc6c25' },
+                    { name: '크러시 (Krush)', alc: '4.5%', desc: '시원하고 산뜻한 맛의 4세대 맥주', color: '#48cae4' },
+                    { name: '카프리 (Cafri)', alc: '4.2%', desc: '가벼운 목 넘김의 프리미엄 라이트 맥주', color: '#ffb703' },
+                    { name: '카스 제로', alc: 'Non', desc: '알코올 부담 없이 즐기는 논알코올 맥주', color: '#adb5bd' },
+                    { name: '카스 제로 레몬', alc: 'Non', desc: '상큼한 레몬 농축액을 더한 논알코올', color: '#ffee32' },
+                    { type: 'section', title: '수입 맥주 라인업' },
+                    { name: '버드와이저', alc: '5.0%', desc: '부드럽고 목 넘김이 깔끔한 미국의 대표 라거', color: '#e63946' },
+                    { name: '호가든', alc: '4.9%', desc: '벨기에 화이트 밀맥주. 오렌지 껍질의 향긋함', color: '#f3e9d2' },
+                    { name: '호가든 로제', alc: '3.0%', desc: '달콤한 라즈베리 풍미가 더해진 핑크빛 밀맥주', color: '#ff4d6d' },
+                    { name: '코로나', alc: '4.5%', desc: '라임과 잘 어울리는 멕시코의 상쾌한 라거', color: '#0056b3' },
+                    { name: '코젤 다크', alc: '3.8%', desc: '체코의 흑맥주. 시나몬과 잘 어울리는 달콤함', color: '#432818' },
+                    { name: '아사히', alc: '5.0%', desc: '깔끔하고 드라이한 맛의 일본 판매 1위 맥주', color: '#b1b1b1' },
+                    { name: '기린 이치방', alc: '5.0%', desc: '첫 번째 짜낸 맥즙만을 사용하여 깔끔한 맛', color: '#ffb703' },
+                    { name: '칭따오', alc: '4.7%', desc: '깨끗한 청량감과 은은한 자스민 향의 조화', color: '#006a31' },
+                    { name: '하이네켄', alc: '5.0%', desc: '네덜란드의 프리미엄 라거. 균형 잡힌 맛', color: '#008200' },
+                    { name: '산미구엘', alc: '5.0%', desc: '필리핀의 대표 맥주. 고소하고 묵직한 바디감', color: '#c1121f' },
+                    { name: '산미구엘 애플', alc: '3.0%', desc: '상큼한 사과 향이 가득한 달콤한 저도주', color: '#9ef01a' },
+                    { name: '크롬바커', alc: '4.8%', desc: '독일의 천연 암반수로 빚은 프리미엄 필스너', color: '#d4a373' },
+                    { name: '빅웨이브', alc: '4.4%', desc: '하와이안 골든 에일. 열대 과일 향의 부드러움', color: '#00b4d8' },
+                    { name: '기네스', alc: '4.2%', desc: '아일랜드의 흑맥주. 크리미한 거품과 깊은 풍미', color: '#000000' },
+                    { name: '사무엘 아담스', alc: '4.8%', desc: '풍부한 홉의 향과 달콤한 맥아의 보스턴 라거', color: '#bc6c25' },
+                    { name: 'KGB 레몬', alc: '5.0%', desc: '상큼한 레몬 향이 특징인 보드카 베이스 음료', color: '#ffee32' },
+                    { name: '블루문', alc: '5.4%', desc: '오렌지 향이 은은한 벨기에 스타일 화이트 에일', color: '#003566' },
+                    { name: '타이거', alc: '5.0%', desc: '싱가포르의 대표 라거. 강한 탄산과 시원한 맛', color: '#00308f' },
+                    { name: '칼스버그', alc: '5.0%', desc: '덴마크 왕실 맥주. 고소하고 깔끔한 끝맛', color: '#004b23' },
+                    { name: '스텔라 아르투아', alc: '5.0%', desc: '벨기에의 고품격 필스너. 쌉쌀한 맛과 풍부한 아로마', color: '#c1121f' },
+                    { name: '롱보드 아일랜드', alc: '4.6%', desc: '하와이의 상쾌한 라거. 고소하고 깔끔한 마무리', color: '#ffb703' },
+                    { name: '에딩거 둔켈', alc: '5.3%', desc: '독일의 프리미엄 흑밀맥주. 부드럽고 묵직한 향', color: '#3d2b1f' },
+                    { name: '에딩거 헤페', alc: '5.3%', desc: '효모가 살아있는 독일의 전통 화이트 밀맥주', color: '#f3e9d2' },
+                    { name: '비어 창', alc: '5.0%', desc: '태국의 대표 라거. 청량감이 높고 깔끔한 맛', color: '#004b23' },
+                    { name: '리오(LEO)', alc: '5.0%', desc: '태국 인기 맥주. 부드러운 탄산과 대중적인 맛', color: '#e63946' },
+                    { name: '하얼빈', alc: '4.3%', desc: '중국의 전통 라거. 부드러운 목 넘김', color: '#004b23' },
+                    { name: '필스너 우르겔', alc: '4.4%', desc: '체코 프리미엄 필스너. 쌉쌀한 홉의 풍미', color: '#d4a373' },
+                    { name: '듀벨', alc: '8.5%', desc: '벨기에 프리미엄 에일. 높은 도수와 복합적인 풍미', color: '#6c757d' }
+                ]
+            },
+            'soju': {
+                title: '소주 / 전통주 라인업',
+                items: [
+                    { name: '참이슬 후레쉬', alc: '16.5%', desc: '대나무 활성숯으로 걸러낸 깨끗함의 대명사', color: '#007f5f' },
+                    { name: '참이슬 오리지널', alc: '20.1%', desc: '소주 본연의 진하고 깊은 맛의 정통 소주', color: '#e63946' },
+                    { name: '진로 이즈 백', alc: '16.0%', desc: '뉴트로 감성의 깔끔하고 순한 목넘김', color: '#00b4d8' },
+                    { name: '진로 골드', alc: '15.5%', desc: '쌀 100% 증류 원액을 첨가한 부드러운 풍미', color: '#ffbe0b' },
+                    { name: '처음처럼', alc: '16.5%', desc: '부드러운 목넘김의 스테디셀러', color: '#55a630' },
+                    { name: '새로 (Zero Sugar)', alc: '16.0%', desc: '당류 제로, 산뜻하고 투명한 맛의 대세 소주', color: '#80ed99' },
+                    { name: '새로 살구', alc: '12.0%', desc: '살구의 달콤한 향을 더한 상큼한 과일 소주', color: '#ff8a5c' },
+                    { name: '새로 다래', alc: '12.0%', desc: '달콤한 다래 과즙이 어우러진 산뜻한 플레이버', color: '#adc178' },
+                    { name: '좋은데이', alc: '16.5%', desc: '깨끗한 맛과 부드러움을 강조한 영남 대표 소주', color: '#38b000' },
+                    { name: '한라산 오리지널', alc: '21.0%', desc: '청정 제주의 암반수로 빚은 깔끔한 고도수 소주', color: '#003566' },
+                    { name: '한라산 순한', alc: '16.0%', desc: '제주 화산 암반수로 빚어 더욱 순하고 부드러운 맛', color: '#48cae4' },
+                    { type: 'section', title: '프리미엄 증류주' },
+                    { name: '일품진로', alc: '25.0%', desc: '참나무통 숙성 원액을 블렌딩한 프리미엄 소주', color: '#1d3557' },
+                    { name: '화요 (HWAYO)', alc: '25/41%', desc: '쌀의 풍미를 담은 대한민국 대표 프리미엄 증류주', color: '#000000' },
+                    { name: '여울', alc: '25.0%', desc: '풍부한 향과 깔끔한 뒷맛의 현대적 증류식 소주', color: '#adb5bd' }
+                ]
+            },
+            'whisky': {
+                title: '위스키 라인업',
+                items: [
+                    { name: '발렌타인 시리즈', alc: '40%', desc: '• 12/17/21/30년: 전세계 판매 1위, 완벽한 밸런스', color: '#1d3557' },
+                    { name: '조니워커 시리즈', alc: '40%', desc: '• 레드/블랙/골드/블루: 스모키함부터 극강의 부드러움까지', color: '#000000' },
+                    { name: '시바스 리갈 시리즈', alc: '40%', desc: '• 12/15/18년: 프리미엄의 기준, 풍부한 과일향', color: '#6a040f' },
+                    { type: 'section', title: '로컬 위스키' },
+                    { name: '골든블루 시리즈', alc: '36.5%', desc: '• 사피루스/다이아몬드: 한국인 최적화 부드러움', color: '#00308f' },
+                    { name: '윈저 시리즈', alc: '32.5/40%', desc: '• 12/17년/W: 영국 왕실 인증의 품격', color: '#432818' },
+                    { name: '임페리얼 시리즈', alc: '35/40%', desc: '• 12/17년/스무스: 대한민국 최초 프리미엄', color: '#252422' },
+                    { name: '스카치블루 시리즈', alc: '35/40%', desc: '• 인터내셔널/17/21년: 깊고 진한 향', color: '#14213d' },
+                    { type: 'section', title: '하이볼 & 싱글몰트' },
+                    { name: '산토리 시리즈', alc: '40%', desc: '• 가쿠빈/수이진: 하이볼 열풍의 핵심', color: '#ffb703' },
+                    { name: '짐빔 시리즈', alc: '40%', desc: '• 화이트/블랙: 대표적인 아메리칸 버번', color: '#e63946' },
+                    { name: '잭 다니엘 시리즈', alc: '35/40%', desc: '• No.7/허니/애플: 전세계적인 테네시 위스키', color: '#000000' },
+                    { name: '벨즈', alc: '40%', desc: '가성비 최고의 영국 국민 위스키', color: '#bc6c25' },
+                    { name: '글렌피딕 시리즈', alc: '40%', desc: '• 12/15/18년: 세계 판매 1위 싱글몰트', color: '#2d6a4f' },
+                    { name: '발베니 시리즈', alc: '40/43%', desc: '• 12/14/16년: 수제 공정의 정성, 부드러운 꿀맛', color: '#bc6c25' }
+                ]
+            },
+            'sake': {
+                title: '사케 라인업', // 제목을 합쳤습니다
+                items: [
+                    // --- 사케 리스트 ---
+                    { name: '닷사이 시리즈 (Dassai)', alc: '15~16%', desc: '• 23: 정미율 23%, 화사한 향<br>• 39: 깔끔한 감칠맛<br>• 45: 입문용 베스트셀러', color: '#252422' },
+                    { name: '쿠보타 만쥬 (Kubota Manju)', alc: '15%', desc: '니가타현 최고급 사케. 부드러운 목넘김으로 접대용 1위', color: '#432818' },
+                    { name: '준마이 다이긴죠 (Junmai Daiginjo)', alc: '15~16%', desc: '쌀을 50% 이상 깎아내어 잡미가 없고 향긋한 풍미', color: '#bc6c25' },
+                    { name: '준마이 긴죠 (Junmai Ginjo)', alc: '15%', desc: '적절한 산미와 향으로 요리와 즐기기 좋은 식중주', color: '#d4a373' },
+                    { name: '마루 (Maru)', alc: '13.5%', desc: '일본 판매 1위 브랜드. 부드러운 맛과 가성비', color: '#e63946' },
+                    { name: '간바레 오또상', alc: '14.5%', desc: '대한민국 이자카야 베스트셀러 친근한 대중주', color: '#003566' },
+                    { name: '센 시리즈 (Sen)', alc: '13.5%', desc: '차갑게 마시면 더욱 깔끔한 맛. 합리적인 가격의 사케', color: '#adb5bd' },
+
+                    // --- 여기서부터 와인 시작 (구분선 추가) ---
+                    { type: 'section', title: '와인(Wine) 라인업' }, 
+                    { name: '라 크라사드 (La Croisade)', alc: '13.5%', desc: '• 까베르네 시라: 프랑스 가성비 1위 와인<br>• 샤르도네: 산뜻한 산미', color: '#6a040f' },
+                    { name: '롱반 시리즈 (Long Barn)', alc: '13.5~14.5%', desc: '버터리하고 고소한 풍미의 미국 베스트셀러 와인', color: '#432818' },
+                    
+                ]
+            }
+        };
+
+
+       function openCatalog(categoryId) {
+    const data = productData[categoryId];
+    if(!data) { alert('준비 중입니다.'); return; }
+
+    const overlay = document.getElementById('catalog-overlay');
+    const contentArea = document.getElementById('catalog-content');
+
+    // 1. 일단 창을 띄웁니다.
+    overlay.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+
+    // 2. 제목과 내용을 먼저 채워 넣습니다.
+    document.getElementById('catalog-title').innerText = data.title;
+    contentArea.innerHTML = data.items.map(item => {
+        if (item.type === 'section') {
+            return `<div class="import-section-title">${item.title}</div>`;
+        }
+        return `
+            <div class="card">
+                <div class="alc-tag" style="background:${item.color}; color:${item.color === '#ffee32' ? '#333' : '#fff'}">${item.alc}</div>
+                <h3>${item.name}</h3>
+                <p>${item.desc}</p>
+            </div>
+        `;
+    }).join('');
+
+    // 3. [핵심 필살기] 브라우저가 내용을 다 그릴 때까지 아주 잠깐(0.01초) 기다렸다가 스크롤을 올립니다.
+    setTimeout(() => {
+        overlay.scrollTo(0, 0);
+        overlay.scrollTop = 0;
+    }, 10); 
+}
+
+        function closeCatalog() {
+            document.getElementById('catalog-overlay').style.display = 'none';
+            document.body.style.overflow = 'auto'; // 스크롤 복구
+        }
+        // 공지사항 데이터
+const noticeData = [
+    {
+        date: '2026-04-08',
+        title: '(유)삼풍주류 홈페이지 새 단장 안내',
+        content: '고객님들과의 원활한 소통을 위해 홈페이지를 새롭게 단장했습니다.\n앞으로 공지사항을 통해 신규 입고 및 단가 변동 소식을 전해드리겠습니다.'
+    },
+  {
+        date: '2026-04-08',
+        title: '(유)삼풍주류 휴무안내',
+        content: '매월 3번째 수요일 휴무 입니다. 참고하시어 주문 부탁드립니다.'
+    },  
+];
+
+function openNotice() {
+    const overlay = document.getElementById('notice-overlay');
+    const contentArea = document.getElementById('notice-content');
+
+    contentArea.innerHTML = noticeData.map(item => `
+        <div style="background: #f8f9fa; padding: 30px; border-radius: 15px; border: 1px solid #eee; margin-bottom: 20px; text-align: left;">
+            <span style="color: #0056b3; font-weight: bold; font-size: 0.9rem;">${item.date}</span>
+            <h3 style="margin: 10px 0; color: #333; font-size: 1.3rem;">${item.title}</h3>
+            <p style="color: #555; line-height: 1.8; white-space: pre-wrap; font-size: 1rem;">${item.content}</p>
+        </div>
+    `).join('');
+
+    overlay.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+}
+
+function closeNotice() {
+    document.getElementById('notice-overlay').style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+    </script>
+
+    <section id="contact" class="inquiry-cta">
+        <h2>맞춤형 상담 문의</h2>
+        <p>네이버 폼으로 문의를 남겨주시면 담당자가 확인 후 빠르게 연락 드립니다.</p>
+        <a href="https://naver.me/xYNQvMQG" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="btn-main-inquiry">
+            지금 바로 상담 문의하기
+        </a>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+           <div class="footer-info">
+    <h3>(유)삼풍주류</h3>
+    <p>주소: <a href="https://map.naver.com/v5/search/삼풍주류/place/1745258496?c" target="_blank" style="color: #fff; text-decoration: underline;">
+        경기도 성남시 분당구 석운로 34
+    </a></p>
+    <p>사업자등록번호: 129-81-12427</p>
+    <p>대표번호: <a href="tel:031-709-8334" style="color: inherit; text-decoration: none;">031-709-8334</a> | FAX: 031-707-7455</p>
+</div>
+            <div class="footer-area">
+                <p><strong>서비스 지역:</strong> 서울 전 지역 / 경기도 / 인천광역시</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
